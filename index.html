@@ -2,35 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
         <h1>Tic Tac Toe</h1>
-         <p id="score" style="color: aliceblue;">====Socre====</p>
-        <p id="scoreO" style="color: aliceblue;">O: 0</p>
-        <p id="scoreX" style="color: aliceblue;">X: 0</p>
-        <div class="msg-container hide">
-            <p id="msg">Winner</p>
-            <button id="new-btn" onclick="startPage()">Start</button>
+        <div class="score-board">
+            <p style="color: aliceblue;">==== Score ====</p>
+            <p id="scoreO" style="color: aliceblue;">O: 0</p>
+            <p id="scoreX" style="color: aliceblue;">X: 0</p>
         </div>
-    <div class="container">
-    <div class="game">
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-    </div>
-    </div>
-    <button id="reset" onclick="resetPage()">Restart</button>
-</main>
-<script src="aap.js"></script>
+
+        <div id="msg-container" class="msg-container hide">
+            <p id="msg">Winner</p>
+            <button id="new-btn">New Game</button>
+        </div>
+
+        <div class="container">
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+            </div>
+        </div>
+        <button id="reset-btn">Reset All Scores</button>
+    </main>
+    <script src="app.js"></script>
 </body>
 </html>
