@@ -1,4 +1,4 @@
-let boxes = document.querySelectorAll(".box");
+ let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector("#msg-container");
@@ -6,8 +6,9 @@ let msg = document.querySelector("#msg");
 let scoreO = document.querySelector("#scoreO");
 let scoreX = document.querySelector("#scoreX");
 
-let turnO = true; // true = O, false = X
-let count = 0; // To track Draw
+let startingPlayerO = true; // Tracks who starts the next round
+let turnO = true; 
+let count = 0;
 
 const winPatterns = [
     [0, 1, 2], [0, 3, 6], [0, 4, 8],
@@ -15,17 +16,20 @@ const winPatterns = [
     [3, 4, 5], [6, 7, 8],
 ];
 
-// Initialize scores from LocalStorage
 window.onload = () => {
     scoreX.innerText = `X: ${localStorage.getItem("keyX") || 0}`;
     scoreO.innerText = `O: ${localStorage.getItem("keyO") || 0}`;
 };
 
 const resetGame = () => {
-    turnO = true;
+    // This flips the starter: if O started last, X starts now.
+    startingPlayerO = !startingPlayerO; 
+    turnO = startingPlayerO;
+    
     count = 0;
     enableBoxes();
     msgContainer.classList.add("hide");
+    msg.innerText = `Turn: ${turnO ? "O" : "X"}`; // Optional: show who starts
 };
 
 const resetScores = () => {
@@ -33,6 +37,8 @@ const resetScores = () => {
     localStorage.setItem("keyX", 0);
     scoreO.innerText = "O: 0";
     scoreX.innerText = "X: 0";
+    // Reset back to O starting when scores are wiped
+    startingPlayerO = false; 
     resetGame();
 };
 
@@ -88,7 +94,7 @@ const updateScore = (winner) => {
     let currentScore = Number(localStorage.getItem(`key${winner}`)) || 0;
     let newScore = currentScore + 1;
     localStorage.setItem(`key${winner}`, newScore);
-    
+
     if (winner === "X") {
         scoreX.innerText = `X: ${newScore}`;
     } else {
